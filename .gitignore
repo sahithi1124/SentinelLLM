@@ -1,0 +1,64 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python caches and tooling
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.pyre/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+
+# Runtime logs and databases
+logs/
+*.jsonl
+*.db
+*.sqlite
+*.sqlite3
+
+# Local model artifacts and weights
+*.gguf
+*.safetensors
+*.bin
+*.ckpt
+*.pt
+*.pth
+models/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary and build output
+*.tmp
+*.temp
+*.log
+*.bak
+*~
+build/
+dist/
+*.egg-info/
+
+# Node tooling, not used by this project
+node_modules/
+npm-debug.log*

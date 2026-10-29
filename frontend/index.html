@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SentinelLLM Security Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">S</div><div><strong>SentinelLLM</strong><span>Security Console</span></div></div>
+    <nav><a class="active" href="#chat">Overview</a><a href="#security">Security analysis</a><a href="#events">Event stream</a><a href="#architecture">Architecture</a></nav>
+    <div class="system-card"><span class="status-dot"></span><div><small>LOCAL SYSTEM</small><strong id="system-status">Checking…</strong></div></div>
+  </aside>
+
+  <main>
+    <header class="topbar"><div><p class="eyebrow">CYBERSECURITY RESEARCH LAB</p><h1>SentinelLLM Dashboard</h1></div><div class="model-chip">Qwen 2.5:3B <span>Ollama · Local</span></div></header>
+
+    <section class="hero-grid" id="chat">
+      <article class="panel chat-panel">
+        <div class="panel-heading"><div><p class="eyebrow">INTERACTIVE CONSOLE</p><h2>Secure prompt session</h2></div><button id="clear-chat" class="ghost-button">Clear chat</button></div>
+        <div class="mode-switch" role="radiogroup" aria-label="Operating mode">
+          <button class="mode-button active" data-mode="protected"><span>Protected</span><small>Prompt-injection analysis enabled</small></button>
+          <button class="mode-button" data-mode="baseline"><span>Baseline</span><small>Direct, unprotected LLM communication</small></button>
+        </div>
+        <div id="chat-log" class="chat-log" aria-live="polite"><div class="empty-state"><div>⌁</div><strong>Ready for analysis</strong><span>Enter a prompt to inspect its security profile and model response.</span></div></div>
+        <div id="loader" class="loader hidden"><span></span>Analyzing prompt and local model…</div>
+        <form id="chat-form">
+          <label for="prompt">Prompt</label>
+          <div class="prompt-row"><textarea id="prompt" maxlength="4000" rows="3" placeholder="Ask a question or describe an evaluation scenario…"></textarea><button id="send-button" type="submit">Send <span>→</span></button></div>
+          <div id="form-error" class="form-error" role="alert"></div>
+        </form>
+      </article>
+
+      <aside class="panel analysis-panel" id="security">
+        <div class="panel-heading"><div><p class="eyebrow">REAL-TIME ANALYSIS</p><h2>Security Analysis</h2></div><span id="decision-badge" class="decision-badge neutral">AWAITING</span></div>
+        <div class="score-ring neutral" id="score-ring"><strong id="risk-score">—</strong><span>/ 100</span><small>Risk score</small></div>
+        <dl class="analysis-list">
+          <div><dt>Risk level</dt><dd id="risk-level">—</dd></div>
+          <div><dt>Forwarded to Ollama</dt><dd id="forwarded">—</dd></div>
+          <div><dt>Threat categories</dt><dd id="threats">None detected</dd></div>
+        </dl>
+        <div class="explanation"><small>EXPLANATION</small><p id="explanation">Security analysis will appear here.</p></div>
+        <div class="metrics"><div><small>MODEL</small><strong id="model-latency">—</strong></div><div><small>SECURITY</small><strong id="security-latency">—</strong></div><div><small>TOTAL</small><strong id="total-latency">—</strong></div></div>
+      </aside>
+    </section>
+
+    <section class="panel events-panel" id="events">
+      <div class="panel-heading"><div><p class="eyebrow">AUDIT STREAM</p><h2>Recent Security Events</h2></div><span class="privacy-note">Raw prompts redacted</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Timestamp</th><th>Event ID</th><th>Risk</th><th>Decision</th><th>Category</th></tr></thead><tbody id="events-body"><tr><td colspan="5" class="muted">No security events loaded.</td></tr></tbody></table></div>
+    </section>
+
+    <section class="panel architecture-panel" id="architecture">
+      <div class="panel-heading"><div><p class="eyebrow">SYSTEM FLOW</p><h2>Phase 2 Architecture</h2></div></div>
+      <div class="architecture"><div>User input<span>01</span></div><b>↓</b><div>Input normalization<span>02</span></div><b>↓</b><div>Injection detection<span>03</span></div><b>↓</b><div>Risk scoring<span>04</span></div><b>↓</b><div>Decision engine<span>05</span></div><b>↓</b><div>LLM or block<span>06</span></div></div>
+    </section>
+  </main>
+  <script src="/static/script.js" defer></script>
+</body>
+</html>
